@@ -1,8 +1,5 @@
 #pragma once
-//typedef char T;
-
 #include <initializer_list>
-using namespace std;
 
 template <typename T> class mileslinkedlist {
 private:
@@ -18,7 +15,7 @@ private:
 public:
 	~mileslinkedlist();
 	mileslinkedlist();
-	mileslinkedlist(initializer_list<T> vals);
+	mileslinkedlist(std::initializer_list<T> vals);
 	T operator[](size_t i) const;
 	T& operator[](size_t i);
 	void insert(size_t i, T value);
@@ -54,7 +51,7 @@ template <typename T> mileslinkedlist<T>::mileslinkedlist() {
 	length_ = 0;
 }
 
-template <typename T> mileslinkedlist<T>::mileslinkedlist(initializer_list<T> vals) {
+template <typename T> mileslinkedlist<T>::mileslinkedlist(std::initializer_list<T> vals) {
 	length_ = 0;
 	if (vals.size() == 0) {
 		first_ = nullptr;
@@ -123,13 +120,6 @@ template <typename T> void mileslinkedlist<T>::remove(size_t i)
 	if (i == length_ - 1) {
 		cutoff->next = nullptr;
 	}
-	//cutoff->next = (*cutoff)[2];
-	//delete (*cutoff)[1];
-	//that was bad code
-	//auto temp = cutoff->entry(1);
-	//cutoff->next = temp->entry(1); //1 + 1 instead of 1 then 2 saves a cycle
-	//delete temp;
-	//that was bad code * 2
 	mllentry* temp = (*cutoff)[1];
 	cutoff->next = (*temp)[1]; //1 + 1 instead of 1 then 2 saves a cycle
 	delete temp;
